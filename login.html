@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Shree Datta Workshop</title>
+    <link rel="stylesheet" href="auth-styles.css">
+    <style>
+        /* Ensure all interactive elements are above background */
+        .auth-box {
+            position: relative;
+            z-index: 100;
+        }
+        input, button, a {
+            position: relative;
+            z-index: 101;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="shop-logo">
+                    <div class="logo-icon">🔧</div>
+                    <h1>Shree Datta Workshop</h1>
+                </div>
+                <p class="tagline">Quality Service, Trusted Results</p>
+            </div>
+
+            <div class="auth-content">
+                <h2>Welcome Back!</h2>
+                <p class="subtitle">Login to manage your workshop records</p>
+
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">
+                            <span class="icon">👤</span>
+                            Username
+                        </label>
+                        <input type="text" id="username" name="username" required placeholder="Enter your username" autocomplete="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="icon">🔒</span>
+                            Password
+                        </label>
+                        <input type="password" id="password" name="password" required placeholder="Enter your password" autocomplete="current-password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <span>Login</span>
+                        <span class="arrow">→</span>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </div>
+            </div>
+
+            <div id="notification" class="notification"></div>
+        </div>
+
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Datta Workshop - Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="shop-branding">
+                    <div class="logo-icon">🔧</div>
+                    <div class="shop-info">
+                        <h1>Shree Datta Workshop</h1>
+                        <p class="tagline">Quality Service, Trusted Results</p>
+                    </div>
+                </div>
+                <div class="user-menu">
+                    <span id="userGreeting" class="user-greeting"></span>
+                    <button id="logoutBtn" class="btn btn-logout">🚪 Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Form Section -->
+            <section class="form-section">
+                <h2>📝 New Customer Receipt</h2>
+                <p class="form-subtitle">Create a single receipt with multiple items/services</p>
+                <form id="entryForm">
+                    <div class="form-group">
+                        <label for="name">Customer Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Enter customer name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+                    </div>
+
+                    <div class="items-section">
+                        <h3>📦 Items/Services (Add all items for this receipt)</h3>
+                        <p class="items-help">All items will be included in ONE receipt for this customer</p>
+                        <div id="itemsList">
+                            <div class="item-row">
+                                <div class="form-group item-select">
+                                    <label for="item-0">Item/Service</label>
+                                    <select id="item-0" class="item-dropdown" required>
+                                        <option value="">Select Item</option>
+                                        <option value="Oil Change">Oil Change</option>
+                                        <option value="Brake Service">Brake Service</option>
+                                        <option value="Tire Replacement">Tire Replacement</option>
+                                        <option value="Battery Replacement">Battery Replacement</option>
+                                        <option value="Engine Tune-up">Engine Tune-up</option>
+                                        <option value="Transmission Service">Transmission Service</option>
+                                        <option value="AC Service">AC Service</option>
+                                        <option value="Wheel Alignment">Wheel Alignment</option>
+                                        <option value="Suspension Repair">Suspension Repair</option>
+                                        <option value="Electrical Work">Electrical Work</option>
+                                        <option value="Body Work">Body Work</option>
+                                        <option value="Painting">Painting</option>
+                                        <option value="General Maintenance">General Maintenance</option>
+                                        <option value="Custom">Custom Service</option>
+                                    </select>
+                                </div>
+                                <div class="form-group item-price">
+                                    <label for="price-0">Price (₹)</label>
+                                    <input type="number" id="price-0" class="price-input" min="0" step="0.01" placeholder="0.00" required>
+                                </div>
+                                <div class="form-group item-qty">
+                                    <label for="qty-0">Quantity</label>
+                                    <input type="number" id="qty-0" class="qty-input" min="1" value="1" required>
+                                </div>
+                                <button type="button" class="btn-remove-item" onclick="removeItem(0)" style="display: none;">×</button>
+                            </div>
+                        </div>
+                        <button type="button" id="addItemBtn" class="btn btn-secondary">➕ Add Another Item to Receipt</button>
+                        <div class="total-display">
+                            <strong>Receipt Total: ₹<span id="totalAmount">0.00</span></strong>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">💾 Save Complete Receipt</button>
+                </form>
+            </section>
+
+            <!-- Saved Entries Section -->
+            <section class="entries-section">
+                <div class="section-header">
+                    <h2>📋 Service Records</h2>
+                    <button id="refreshBtn" class="btn btn-secondary">🔄 Refresh</button>
+                </div>
+                
+                <div class="pdf-actions">
+                    <button id="generateAllPdf" class="btn btn-success">📄 Generate Complete Report (PDF)</button>
+                </div>
+
+                <div id="entriesList" class="entries-list">
+                    <p class="loading">Loading records...</p>
+                </div>
+            </section>
+        </div>
+
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

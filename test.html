@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - File Loading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>File Loading Test</h1>
+    
+    <div class="test-box">
+        <h2>Quick Links:</h2>
+        <ul>
+            <li><a href="/login.html">Login Page</a></li>
+            <li><a href="/signup.html">Signup Page</a></li>
+            <li><a href="/">Main Dashboard</a> (requires login)</li>
+        </ul>
+    </div>
+
+    <div class="test-box">
+        <h2>File Availability Check:</h2>
+        <div id="results">Checking...</div>
+    </div>
+
+    <script>
+        async function checkFiles() {
+            const files = [
+                '/auth-styles.css',
+                '/auth.js',
+                '/styles.css',
+                '/app.js',
+                '/login.html',
+                '/signup.html'
+            ];
+            
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>Testing file availability...</p>';
+            
+            let html = '<ul>';
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    const status = response.ok ? 
+                        `<span class="success">✓ Available (${response.status})</span>` : 
+                        `<span class="error">✗ Not Found (${response.status})</span>`;
+                    html += `<li><strong>${file}</strong>: ${status}</li>`;
+                } catch (error) {
+                    html += `<li><strong>${file}</strong>: <span class="error">✗ Error: ${error.message}</span></li>`;
+                }
+            }
+            
+            html += '</ul>';
+            results.innerHTML = html;
+        }
+        
+        checkFiles();
+    </script>
+</body>
+</html>
